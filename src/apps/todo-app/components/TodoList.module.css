@@ -1,0 +1,19 @@
+.list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.button {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  background: none;
+  border: var(--color-primary) solid 2px;
+  color: var(--color-primary-darker);
+  border-radius: 5px;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

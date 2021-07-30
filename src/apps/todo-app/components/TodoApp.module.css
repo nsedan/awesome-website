@@ -1,0 +1,19 @@
+.outerContainer {
+  background-image: url("../background/bg.jpg");
+  background-size: cover;
+  color: var(--color-primary-darker);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerContainer {
+  position: relative;
+  text-align: center;
+  padding: 5rem 10rem;
+  margin: 3rem 0;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
+}
