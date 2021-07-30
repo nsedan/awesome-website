@@ -1,5 +1,13 @@
-.container {
-  margin: 2rem 10rem;
+.outerContainer {
+  background-image: url("../background/bg.jpeg");
+  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.innerContainer {
+  margin: 5rem 10rem;
+  color: #fff;
 }
 
 .card {

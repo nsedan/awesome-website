@@ -6,11 +6,9 @@
   width: 100%;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .navLink {
-  color: var(--color-primary-darker);
   text-decoration: none;
   padding: 5px;
   margin-left: 15px;
@@ -18,10 +16,22 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0);
 }
 
-.navLink:hover {
-  border-color: var(--color-primary-darker);
-}
-
 .navLink:last-of-type {
   margin-right: 1rem;
+}
+
+.light .navLink {
+  color: white;
+}
+
+.light .navLink:hover {
+  border-color: white;
+}
+
+.dark .navLink {
+  color: var(--color-primary-darker);
+}
+
+.dark .navLink:hover {
+  border-color: var(--color-primary-darker);
 }
