@@ -12,6 +12,10 @@
   --color-primary-darker: rgb(0, 100, 150);
 }
 
+html {
+  background: #00356b;
+}
+
 h1 {
   font-family: "Rubik", sans-serif;
 }

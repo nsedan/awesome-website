@@ -4,7 +4,10 @@ import classes from "./NavBar.module.css";
 
 const NavBar = () => {
   const { pathname } = useLocation();
-  const linksColor = pathname !== "/" ? classes.dark : classes.light;
+  const linksColor =
+    pathname === "/" || pathname === "/customers"
+      ? classes.light
+      : classes.dark;
 
   return (
     <div className={`${classes.navBar} ${linksColor}`}>
@@ -13,6 +16,9 @@ const NavBar = () => {
       </Link>
       <Link className={classes.navLink} to="/todo">
         Maxify
+      </Link>
+      <Link className={classes.navLink} to="/customers">
+        Customers
       </Link>
     </div>
   );

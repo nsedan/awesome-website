@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Customers from "./apps/customers/components/Customers";
 import Home from "./apps/home/components/Home";
 import NavBar from "./apps/home/components/NavBar";
 import TodoApp from "./apps/todo-app/components/TodoApp";
@@ -15,6 +16,9 @@ function App() {
         </Route>
         <Route path="/todo" exact>
           <TodoApp />
+        </Route>
+        <Route path="/customers" exact>
+          <Customers />
         </Route>
         <Route path="/*" exact>
           <Redirect to="/" />
