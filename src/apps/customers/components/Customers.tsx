@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import { store } from "../firebase/config";
 import classes from "./Customers.module.css";
 
+interface CustomerType {
+  id: string;
+  name: string;
+  phone: string;
+}
+
 const Customers = () => {
   const [customerId, setCustomerId] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [list, setList] = useState("");
+  const [list, setList] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,13 +21,16 @@ const Customers = () => {
       setIsLoading(true);
       const { docs } = await store.collection("customers").get();
       setIsLoading(false);
-      const newArray = docs.map((item) => ({ id: item.id, ...item.data() }));
+      const newArray: any = docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
       setList(newArray);
     };
     getCustomers();
   }, []);
 
-  const setCustomers = async (e) => {
+  const setCustomers = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const customer = {
       name: name,
@@ -32,7 +41,10 @@ const Customers = () => {
       await store.collection("customers").add(customer);
       const { docs } = await store.collection("customers").get();
       setIsLoading(false);
-      const newArray = docs.map((item) => ({ id: item.id, ...item.data() }));
+      const newArray: any = docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
       setList(newArray);
       setName("");
       setPhone("");
@@ -41,22 +53,25 @@ const Customers = () => {
     }
   };
 
-  const deleteCustomer = async (id) => {
+  const deleteCustomer = async (id: string) => {
     try {
       setIsLoading(true);
       await store.collection("customers").doc(id).delete();
       const { docs } = await store.collection("customers").get();
       setIsLoading(false);
-      const newArray = docs.map((item) => ({ id: item.id, ...item.data() }));
+      const newArray: any = docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
       setList(newArray);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const editCustomer = async (id) => {
+  const editCustomer = async (id: string) => {
     try {
-      const data = await store.collection("customers").doc(id).get();
+      const data: any = await store.collection("customers").doc(id).get();
       const { name, phone } = data.data();
       setName(name);
       setPhone(phone);
@@ -67,7 +82,7 @@ const Customers = () => {
     }
   };
 
-  const setUpdate = async (e) => {
+  const setUpdate = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const updatedCustomer = {
       name: name,
@@ -78,7 +93,10 @@ const Customers = () => {
       await store.collection("customers").doc(customerId).set(updatedCustomer);
       const { docs } = await store.collection("customers").get();
       setIsLoading(false);
-      const newArray = docs.map((item) => ({ id: item.id, ...item.data() }));
+      const newArray: any = docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
       setList(newArray);
       setName("");
       setPhone("");
@@ -94,10 +112,7 @@ const Customers = () => {
       <div className={classes.row}>
         <div className={classes.col}>
           <h2>Form</h2>
-          <form
-            onSubmit={editMode ? setUpdate : setCustomers}
-            className="form-group"
-          >
+          <form onSubmit={editMode ? setUpdate : setCustomers}>
             <input
               value={name}
               placeholder="Name"
@@ -125,14 +140,14 @@ const Customers = () => {
                 type="submit"
                 value="Save"
                 className={classes.submitBtn}
-                disabled={isLoading && "disabled"}
+                disabled={isLoading && true}
               />
             ) : (
               <input
                 type="submit"
                 value="Submit"
                 className={classes.submitBtn}
-                disabled={isLoading && "disabled"}
+                disabled={isLoading && true}
               />
             )}
           </form>
@@ -142,12 +157,12 @@ const Customers = () => {
           <ul className={classes.list}>
             {isLoading ? (
               <p>Loading...</p>
-            ) : list.length !== 0 ? (
-              list.map((item) => (
+            ) : list.length > 0 ? (
+              list.map((item: CustomerType) => (
                 <li className={classes.listItem} key={item.id}>
                   {item.name} - {item.phone}
                   <button
-                    onClick={(id) => {
+                    onClick={() => {
                       editCustomer(item.id);
                     }}
                     className={classes.editBtn}
@@ -155,7 +170,7 @@ const Customers = () => {
                     EDIT
                   </button>
                   <button
-                    onClick={(id) => {
+                    onClick={() => {
                       deleteCustomer(item.id);
                     }}
                     className={classes.deleteBtn}
