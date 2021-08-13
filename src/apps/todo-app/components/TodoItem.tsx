@@ -28,7 +28,7 @@ const TodoItem = (props: TodoType) => {
 
   return (
     <li className={classes.listItem}>
-      <h3 className={classes.itemTitle}>{title}</h3>
+      <p className={classes.itemTitle}>{title}</p>
       <div className={classes.itemActions}>
         <button onClick={onTogglePriority}>
           {highPriority ? (

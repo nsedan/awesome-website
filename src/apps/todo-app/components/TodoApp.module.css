@@ -17,3 +17,10 @@
   border-radius: 10px;
   box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
 }
+
+@media only screen and (max-width: 600px) {
+  .innerContainer {
+    width: 100vh;
+    padding: 5rem 2rem;
+  }
+}

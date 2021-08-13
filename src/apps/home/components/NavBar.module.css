@@ -35,3 +35,9 @@
 .dark .navLink:hover {
   border-color: var(--color-primary-darker);
 }
+
+@media only screen and (max-width: 600px) {
+  .navBar {
+    text-align: center;
+  }
+}

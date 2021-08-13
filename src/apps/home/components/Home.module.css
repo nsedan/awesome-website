@@ -20,13 +20,12 @@
 .cardContent {
   display: flex;
   gap: 1rem;
-  max-width: 500px;
   padding: 3rem 4rem;
   text-align: end;
 }
 
 .cardBody {
-  flex: 2 1 0;
+  flex: 3;
 }
 
 .cardBody h3 {
@@ -34,7 +33,7 @@
 }
 
 .cardImg {
-  flex: 1 1 0;
+  flex: 1;
 }
 
 .img {

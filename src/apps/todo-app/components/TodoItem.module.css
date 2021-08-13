@@ -25,3 +25,15 @@
   padding: 0 10px;
   color: var(--color-primary-darker);
 }
+
+@media only screen and (max-width: 600px) {
+  .listItem {
+    padding: 2px 5px;
+    max-width: 95vw;
+    grid-gap: 0;
+    gap: 0;
+  }
+  .itemActions button {
+    padding: 0 5px;
+  }
+}
