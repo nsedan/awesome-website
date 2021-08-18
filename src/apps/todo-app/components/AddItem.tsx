@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { todosActions } from "../store/todo-slice";
+import { sendTodo } from "../store/todo-actions";
 import classes from "./AddItem.module.css";
 import { v4 as uuid } from "uuid";
 
 const AddItem = () => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
 
   const todo = {
     id: uuid(),
@@ -19,9 +15,13 @@ const AddItem = () => {
     isCompleted: false,
   };
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
   const onSubmitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dispatch(todosActions.addTodo(todo));
+    dispatch(sendTodo(todo));
     setTitle("");
   };
 

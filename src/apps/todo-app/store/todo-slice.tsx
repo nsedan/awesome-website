@@ -15,6 +15,11 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
+    loadTodos: (state, action) => {
+      const todos = action.payload;
+      state = todos;
+      return state;
+    },
     addTodo: (state, action) => {
       const newTodo = action.payload;
       state.push(newTodo);
