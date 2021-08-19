@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface TodoType {
-  id: string;
+  id?: string;
   title: string;
   highPriority: boolean;
   isCompleted: boolean;
@@ -19,18 +19,6 @@ const todoSlice = createSlice({
       const todos = action.payload;
       state = todos;
       return state;
-    },
-    addTodo: (state, action) => {
-      const newTodo = action.payload;
-      state.push(newTodo);
-      return state;
-    },
-    removeTodo: (state, action) => {
-      const id = action.payload;
-      return state.filter((todo) => todo.id !== id);
-    },
-    removeAllTodo: (state) => {
-      return (state = initialState);
     },
     togglePriority: (state, action) => {
       const id = action.payload;

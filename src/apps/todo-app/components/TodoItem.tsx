@@ -1,7 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { todosActions, TodoType } from "../store/todo-slice";
-import { deleteTodo } from "../store/todo-actions";
+import { TodoType } from "../store/todo-slice";
+import {
+  deleteTodo,
+  toggleCompleted,
+  togglePriority,
+} from "../store/todo-actions";
 import classes from "./TodoItem.module.css";
 import {
   FaRegFlag,
@@ -16,15 +20,21 @@ const TodoItem = (props: TodoType) => {
   const dispatch = useDispatch();
 
   const onDeleteHandler = () => {
-    dispatch(deleteTodo(id));
+    if (id) {
+      dispatch(deleteTodo(id));
+    }
   };
 
   const onTogglePriority = () => {
-    dispatch(todosActions.togglePriority(id));
+    if (id) {
+      dispatch(togglePriority(id));
+    }
   };
 
   const onToggleCompleted = () => {
-    dispatch(todosActions.toggleCompleted(id));
+    if (id) {
+      dispatch(toggleCompleted(id));
+    }
   };
 
   return (

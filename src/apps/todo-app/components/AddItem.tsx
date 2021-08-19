@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendTodo } from "../store/todo-actions";
 import classes from "./AddItem.module.css";
-import { v4 as uuid } from "uuid";
 
 const AddItem = () => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
 
   const todo = {
-    id: uuid(),
     title: title,
     highPriority: false,
     isCompleted: false,

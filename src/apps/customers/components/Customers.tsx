@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { store } from "../firebase/config";
+import { store } from "../../firebase/config";
 import classes from "./Customers.module.css";
 
 interface CustomerType {
