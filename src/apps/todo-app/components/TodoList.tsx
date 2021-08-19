@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../store";
-import { fetchTodosData } from "../store/todo-actions";
-import { todosActions } from "../store/todo-slice";
+import { deleteAllTodos, fetchTodosData } from "../store/todo-actions";
 import TodoItem from "./TodoItem";
 import classes from "./TodoList.module.css";
 
@@ -11,7 +10,7 @@ const TodoList = () => {
   const dispatch = useDispatch();
 
   const onDeleteAllHandler = () => {
-    dispatch(todosActions.removeAllTodo());
+    dispatch(deleteAllTodos());
   };
 
   useEffect(() => {
