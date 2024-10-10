@@ -1,7 +1,6 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import "./App.css";
-import Customers from "./apps/customers/components/Customers";
 import Home from "./apps/home/components/Home";
 import NavBar from "./apps/home/components/NavBar";
 import TodoApp from "./apps/todo-app/components/TodoApp";
@@ -10,20 +9,14 @@ function App() {
   return (
     <>
       <NavBar />
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/todo" exact>
-          <TodoApp />
-        </Route>
-        <Route path="/customers" exact>
-          <Customers />
-        </Route>
-        <Route path="/*" exact>
-          <Redirect to="/" />
-        </Route>
-      </Switch>
+        <Routes>
+          <Route path="/">
+            <Route index element={<Home />} />
+          </Route>
+          <Route path="/todo">
+            <Route index element={<TodoApp />} />
+          </Route>
+        </Routes>
     </>
   );
 }

@@ -1,13 +1,16 @@
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { todosActions, TodoState, TodoType } from "./todo-slice";
-import { store } from "../../firebase/config";
+import { getFirestore, collection, doc, getDocs, addDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore";
+import { app } from "../../firebase/config";  // Import the initialized Firebase app
 
-const db = store.collection("todoApp");
+// Initialize Firestore
+const db = getFirestore(app);
+const todoCollection = collection(db, "todoApp");
 
 export const fetchTodos = () => {
   return async (dispatch: ThunkDispatch<TodoState, void, AnyAction>) => {
-    const { docs } = await db.get();
-    const todos = docs.map((todo) => ({
+    const { docs } = await getDocs(todoCollection);
+    const todos = docs.map((todo: any) => ({
       id: todo.id,
       ...todo.data(),
     }));
@@ -17,9 +20,9 @@ export const fetchTodos = () => {
 
 export const sendTodo = (todoData: TodoType) => {
   return async (dispatch: ThunkDispatch<TodoState, void, AnyAction>) => {
-    await db.add(todoData);
-    const { docs } = await db.get();
-    const todos = docs.map((todo) => ({
+    await addDoc(todoCollection, todoData);
+    const { docs } = await getDocs(todoCollection);
+    const todos = docs.map((todo: any) => ({
       id: todo.id,
       ...todo.data(),
     }));
@@ -29,9 +32,9 @@ export const sendTodo = (todoData: TodoType) => {
 
 export const deleteTodo = (id: string) => {
   return async (dispatch: ThunkDispatch<TodoState, void, AnyAction>) => {
-    await db.doc(id.toString()).delete();
-    const { docs } = await db.get();
-    const todos = docs.map((todo) => ({
+    await deleteDoc(doc(db, "todoApp", id));
+    const { docs } = await getDocs(todoCollection);
+    const todos = docs.map((todo: any) => ({
       id: todo.id,
       ...todo.data(),
     }));
@@ -41,32 +44,30 @@ export const deleteTodo = (id: string) => {
 
 export const toggleCompleted = (id: string) => {
   return async (dispatch: ThunkDispatch<TodoState, void, AnyAction>) => {
-    await db
-      .doc(id)
-      .get()
-      .then((doc) => {
-        db.doc(id).update({
-          isCompleted: !doc.data()!.isCompleted,
-        });
-      })
-      .then(() => {
-        dispatch(todosActions.toggleCompleted(id));
+    const todoDoc = doc(db, "todoApp", id);
+    const docSnapshot = await getDoc(todoDoc);
+
+    if (docSnapshot.exists()) {
+      const currentData = docSnapshot.data();
+      await updateDoc(todoDoc, {
+        isCompleted: !currentData?.isCompleted,
       });
+      dispatch(todosActions.toggleCompleted(id));
+    }
   };
 };
 
 export const togglePriority = (id: string) => {
   return async (dispatch: ThunkDispatch<TodoState, void, AnyAction>) => {
-    await db
-      .doc(id)
-      .get()
-      .then((doc) => {
-        db.doc(id).update({
-          highPriority: !doc.data()!.highPriority,
-        });
-      })
-      .then(() => {
-        dispatch(todosActions.togglePriority(id));
+    const todoDoc = doc(db, "todoApp", id);
+    const docSnapshot = await getDoc(todoDoc);
+
+    if (docSnapshot.exists()) {
+      const currentData = docSnapshot.data();
+      await updateDoc(todoDoc, {
+        highPriority: !currentData?.highPriority,
       });
+      dispatch(todosActions.togglePriority(id));
+    }
   };
 };

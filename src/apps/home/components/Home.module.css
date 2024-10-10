@@ -40,3 +40,15 @@
   width: 100%;
   border-radius: 100%;
 }
+
+@media (max-width: 768px) {
+  .innerContainer {
+    margin: 5rem;
+  }
+  .img {
+    width: 0;
+  }
+  .cardContent {
+    padding: 0;
+  }
+}

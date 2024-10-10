@@ -5,7 +5,7 @@ import classes from "./NavBar.module.css";
 const NavBar = () => {
   const { pathname } = useLocation();
   const linksColor =
-    pathname === "/" || pathname === "/customers"
+    pathname === "/"
       ? classes.light
       : classes.dark;
 
