@@ -17,8 +17,8 @@ const Home = () => {
             </div>
             <div className={classes.cardBody}>
               <h3>Naim Sedan</h3>
-              <p>FullStack Developer</p>
-              <small>Based in London, United Kingdom</small>
+              <p>Front-End Engineer</p>
+              <small>Based in Glasgow, United Kingdom</small>
             </div>
           </div>
         </div>
