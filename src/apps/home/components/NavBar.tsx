@@ -17,9 +17,6 @@ const NavBar = () => {
       <Link className={classes.navLink} to="/todo">
         Maxify
       </Link>
-      <Link className={classes.navLink} to="/customers">
-        Customers
-      </Link>
     </div>
   );
 };
