@@ -10,7 +10,7 @@ const Home = () => {
           <div className={classes.cardContent}>
             <div className={classes.cardImg}>
               <img
-                src="public/profile_pic.jpeg"
+                src="/profile_pic.jpeg"
                 className={classes.img}
                 alt="profile"
               />
