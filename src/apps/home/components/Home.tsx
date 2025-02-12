@@ -10,7 +10,7 @@ const Home = () => {
           <div className={classes.cardContent}>
             <div className={classes.cardImg}>
               <img
-                src="https://media.licdn.com/dms/image/v2/D4E03AQE-LLYkVThCpg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1701820418410?e=1733961600&v=beta&t=xZ5409iJsOntOG26EjkVRmkQxHCCzDlIgInb8wTCKIU"
+                src="public/profile_pic.jpeg"
                 className={classes.img}
                 alt="profile"
               />
